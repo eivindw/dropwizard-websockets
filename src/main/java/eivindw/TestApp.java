@@ -1,10 +1,11 @@
 package eivindw;
 
-import eivindw.api.HelloResource;
+import eivindw.api.BroadcasterResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.atmosphere.cpr.ApplicationConfig;
 import org.atmosphere.cpr.AtmosphereServlet;
 
 public class TestApp extends Application<Configuration> {
@@ -19,7 +20,7 @@ public class TestApp extends Application<Configuration> {
 
    @Override
    public void run(Configuration conf, Environment env) throws Exception {
-      env.jersey().register(HelloResource.class);
+      env.jersey().register(new BroadcasterResource(env.getObjectMapper()));
 
       initAtmosphere(env);
    }
@@ -28,11 +29,11 @@ public class TestApp extends Application<Configuration> {
       AtmosphereServlet atmosphereServlet = new AtmosphereServlet();
 
       atmosphereServlet.framework().addInitParameter(
-         "com.sun.jersey.config.property.packages",
-         "eivindw.api.atmosphere"
+         ApplicationConfig.ANNOTATION_PACKAGE,
+         "eivindw.atmosphere"
       );
       atmosphereServlet.framework().addInitParameter(
-         "org.atmosphere.websocket.messageContentType",
+         ApplicationConfig.DEFAULT_CONTENT_TYPE,
          "application/json"
       );
 
