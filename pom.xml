@@ -16,13 +16,18 @@
       <atmosphere.version>2.1.6</atmosphere.version>
       <jersey.version>1.18.1</jersey.version>
       <jetty.version>9.0.7.v20131107</jetty.version>
-      <dropwizard-webjars.version>0.2.0</dropwizard-webjars.version>
+      <dropwizard-webjars.version>0.2.1</dropwizard-webjars.version>
    </properties>
 
    <dependencies>
       <dependency>
          <groupId>io.dropwizard</groupId>
          <artifactId>dropwizard-core</artifactId>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.dropwizard</groupId>
+         <artifactId>dropwizard-assets</artifactId>
          <scope>compile</scope>
       </dependency>
       <dependency>
@@ -52,6 +57,11 @@
          <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
+            <version>${dropwizard.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-assets</artifactId>
             <version>${dropwizard.version}</version>
          </dependency>
          <dependency>

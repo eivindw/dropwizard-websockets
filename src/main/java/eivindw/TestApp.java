@@ -1,8 +1,10 @@
 package eivindw;
 
+import com.bazaarvoice.dropwizard.webjars.WebJarBundle;
 import eivindw.api.BroadcasterResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.atmosphere.cpr.ApplicationConfig;
@@ -16,6 +18,8 @@ public class TestApp extends Application<Configuration> {
 
    @Override
    public void initialize(Bootstrap<Configuration> bootstrap) {
+      bootstrap.addBundle(new WebJarBundle());
+      bootstrap.addBundle(new AssetsBundle("/web", "/web", "index.html", "web"));
    }
 
    @Override
