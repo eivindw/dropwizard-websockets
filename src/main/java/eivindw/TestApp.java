@@ -2,13 +2,12 @@ package eivindw;
 
 import com.bazaarvoice.dropwizard.webjars.WebJarBundle;
 import eivindw.api.BroadcasterResource;
+import eivindw.ws.BroadcastServlet;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.atmosphere.cpr.ApplicationConfig;
-import org.atmosphere.cpr.AtmosphereServlet;
 
 public class TestApp extends Application<Configuration> {
 
@@ -26,21 +25,8 @@ public class TestApp extends Application<Configuration> {
    public void run(Configuration conf, Environment env) throws Exception {
       env.jersey().register(new BroadcasterResource(env.getObjectMapper()));
 
-      initAtmosphere(env);
-   }
-
-   private void initAtmosphere(Environment env) {
-      AtmosphereServlet atmosphereServlet = new AtmosphereServlet();
-
-      atmosphereServlet.framework().addInitParameter(
-         ApplicationConfig.ANNOTATION_PACKAGE,
-         "eivindw.atmosphere"
+      env.getApplicationContext().getServletHandler().addServletWithMapping(
+         BroadcastServlet.class, "/ws/*"
       );
-      atmosphereServlet.framework().addInitParameter(
-         ApplicationConfig.DEFAULT_CONTENT_TYPE,
-         "application/json"
-      );
-
-      env.servlets().addServlet("AtmosphereServlet", atmosphereServlet).addMapping("/atm/*");
    }
 }

@@ -5,29 +5,17 @@ var dwws = dwws || {};
 
    var $status = $("#status");
 
-   var request = {
-      url: "/atm/async",
-      contentType: "application/json",
-      transport: "websocket",
-      trackMessageLength: true,
-      onOpen: function (resp) {
-         console.log("connect", resp);
-         $status.html("<p>Connected: " + resp.request.uuid + " - " + resp.request.url + " (" + resp.transport + ")</p>");
-      },
-      onMessage: function (resp) {
-         var message = JSON.parse(resp.responseBody);
-         console.log("message", message);
-         $status.prepend("<p>" + JSON.stringify(message) + "</p>");
-      },
-      onClose: function (resp) {
-         console.log("disconnect", resp);
-         $status.prepend("<p>Disconnected: " + resp.reasonPhrase + " (" + resp.transport + ")</p>");
-      },
-      onError: function (resp) {
-         console.log("error", resp);
-         $status.prepend("<p>Error: " + resp.reasonPhrase + " (" + resp.transport + ")</p>");
-      }
+   var socket = new WebSocket("ws://localhost:8080/ws/");
+
+   socket.onopen = function() {
+      console.log("Connected!");
+      socket.send("heihei!");
+      $status.html("<p>Connected websocket!</p>");
    };
 
-   $.atmosphere.subscribe(request);
+   socket.onmessage = function(msg) {
+      console.log("Gots message", msg);
+      $status.prepend("<p>" + msg.data + "</p>");
+   };
+
 }(dwws, jQuery));

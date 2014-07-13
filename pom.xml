@@ -13,10 +13,9 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
       <dropwizard.version>0.7.1</dropwizard.version>
-      <atmosphere.version>2.1.6</atmosphere.version>
-      <jersey.version>1.18.1</jersey.version>
       <jetty.version>9.0.7.v20131107</jetty.version>
       <dropwizard-webjars.version>0.2.1</dropwizard-webjars.version>
+      <jquery.version>2.1.1</jquery.version>
    </properties>
 
    <dependencies>
@@ -31,24 +30,23 @@
          <scope>compile</scope>
       </dependency>
       <dependency>
-         <groupId>org.atmosphere</groupId>
-         <artifactId>atmosphere-jersey</artifactId>
-         <scope>compile</scope>
-      </dependency>
-      <dependency>
          <groupId>com.bazaarvoice.dropwizard</groupId>
          <artifactId>dropwizard-webjars-bundle</artifactId>
          <scope>compile</scope>
       </dependency>
       <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>jquery-atmosphere</artifactId>
-         <scope>runtime</scope>
+         <groupId>org.eclipse.jetty.websocket</groupId>
+         <artifactId>websocket-api</artifactId>
+         <scope>compile</scope>
       </dependency>
       <dependency>
          <groupId>org.eclipse.jetty.websocket</groupId>
          <artifactId>websocket-server</artifactId>
-         <scope>runtime</scope>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>jquery</artifactId>
       </dependency>
    </dependencies>
 
@@ -66,29 +64,13 @@
          </dependency>
          <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-server</artifactId>
+            <artifactId>websocket-api</artifactId>
             <version>${jetty.version}</version>
          </dependency>
          <dependency>
-            <groupId>org.atmosphere</groupId>
-            <artifactId>atmosphere-jersey</artifactId>
-            <version>${atmosphere.version}</version>
-            <exclusions>
-               <exclusion>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>slf4j-api</artifactId>
-               </exclusion>
-            </exclusions>
-         </dependency>
-         <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>${jersey.version}</version>
-         </dependency>
-         <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-servlet</artifactId>
-            <version>${jersey.version}</version>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-server</artifactId>
+            <version>${jetty.version}</version>
          </dependency>
          <dependency>
             <groupId>com.bazaarvoice.dropwizard</groupId>
@@ -97,8 +79,8 @@
          </dependency>
          <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>jquery-atmosphere</artifactId>
-            <version>${atmosphere.version}</version>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
          </dependency>
       </dependencies>
    </dependencyManagement>

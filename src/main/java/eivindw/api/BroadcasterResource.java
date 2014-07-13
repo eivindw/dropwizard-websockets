@@ -1,7 +1,6 @@
 package eivindw.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.atmosphere.cpr.MetaBroadcaster;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -21,6 +20,6 @@ public class BroadcasterResource {
 
    @POST
    public void broadcast(Object data) throws Exception {
-      MetaBroadcaster.getDefault().broadcastTo("/atm/async", objectMapper.writeValueAsString(data));
+      //MetaBroadcaster.getDefault().broadcastTo("/atm/async", objectMapper.writeValueAsString(data));
    }
 }
