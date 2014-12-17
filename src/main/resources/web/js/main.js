@@ -13,6 +13,11 @@ var dwws = dwws || {};
       $status.html("<p>Connected websocket!</p>");
    };
 
+   socket.onclose = function() {
+      console.log("Closed!");
+      $status.prepend("<p>Closed websocket</p>");
+   };
+
    socket.onmessage = function(msg) {
       console.log("Gots message", msg);
       $status.prepend("<p>" + msg.data + "</p>");

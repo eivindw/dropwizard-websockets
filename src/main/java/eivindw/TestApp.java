@@ -12,7 +12,7 @@ import io.dropwizard.setup.Environment;
 public class TestApp extends Application<Configuration> {
 
    public static void main(String[] args) throws Exception {
-      new TestApp().run(new String[]{"server"});
+      new TestApp().run("server", "src/main/config/default.yml");
    }
 
    @Override
