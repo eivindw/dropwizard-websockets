@@ -3,12 +3,22 @@
 <head lang="en">
    <meta charset="UTF-8">
    <title>Dropwizard Websockets Example</title>
+   <style>
+      .status {
+         border-radius: 5px;
+         height: 200px;
+         width: 90%;
+         padding: 5px;
+         background-color: #AAA;
+         overflow: scroll;
+      }
+   </style>
 </head>
 <body>
 
 <h1>Dropwizard Websockets Example</h1>
 
-<div id="status" style="border-radius: 5px; height: 200px; width: 90%; padding: 5px; background-color: #AAA; overflow: scroll">Ready to connect.</div>
+<div id="status" class="status">Ready to connect.</div>
 
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="js/main.js"></script>
