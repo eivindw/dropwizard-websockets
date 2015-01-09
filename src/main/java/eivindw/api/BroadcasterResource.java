@@ -8,7 +8,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path("broadcast")
-@Consumes("application/json")
 public class BroadcasterResource {
 
    private final ObjectMapper objectMapper;
@@ -18,7 +17,14 @@ public class BroadcasterResource {
    }
 
    @POST
+   @Consumes("application/json")
    public void broadcast(Object data) throws Exception {
       BroadcastSocket.broadcast(objectMapper.writeValueAsString(data));
+   }
+
+   @POST
+   @Consumes("text/plain")
+   public void broadcastString(String data) throws Exception {
+      BroadcastSocket.broadcast("Client message: " + data);
    }
 }
